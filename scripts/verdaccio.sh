@@ -43,13 +43,12 @@ set -e
 make build
 
 # Start verdaccio and send it to the background
-yarn verdaccio --listen $port &>${output}&
+yarn verdaccio --config "./.verdaccio-ci.config.yml" --listen $port &>${output}&
 
 # Wait for verdaccio to start
 grep -q 'http address' <(tail -f $output)
 
 # Login as test user
-yarn npm-cli-login -u abc -p abc -e 'abc@abc.com' -r $registry
 yarn config set npmPublishRegistry $registry
 yarn config set npmRegistryServer $registry
 yarn config set unsafeHttpWhitelist localhost
@@ -64,6 +63,8 @@ then
   git config --global user.name GitHub Actions
 fi
 
+yarn workspaces foreach --all --no-private version minor --deferred
+yarn version apply --all
 # Bump all package versions (allow publish from current branch but don't push tags or commit)
 yarn workspaces foreach --all --no-private version patch --deferred
 yarn version apply --all
