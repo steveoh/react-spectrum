@@ -63,6 +63,7 @@ then
   git config --global user.name GitHub Actions
 fi
 
+# Bump all package versions (allow publish from current branch but don't push tags or commit)
 yarn workspaces foreach --all --no-private version minor --deferred
 yarn version apply --all
 # Bump all package versions (allow publish from current branch but don't push tags or commit)
