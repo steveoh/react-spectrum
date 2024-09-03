@@ -14,7 +14,7 @@ parameters:
     default: ""
 
 orbs:
-  azure-cli: circleci/azure-cli@1.2.0
+  azure-cli: circleci/azure-cli@1.2.2
 
 executors:
   rsp:
