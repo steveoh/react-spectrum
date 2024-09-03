@@ -487,6 +487,10 @@ jobs:
   deploy:
     executor: azure-cli/azure-docker
     steps:
+      - run:
+        name: Install tar
+        command: |
+          yum install -y tar gzip
       - attach_workspace:
           at: /tmp/dist
 
