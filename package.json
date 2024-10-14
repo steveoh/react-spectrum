@@ -169,7 +169,6 @@
     "lfcdn": "^0.4.2",
     "lucide-react": "patch:lucide-react@npm%3A0.294.0#~/.yarn/patches/lucide-react-npm-0.294.0-86f24c8068.patch",
     "md5": "^2.2.1",
-    "npm-cli-login": "^1.0.0",
     "nyc": "^10.2.0",
     "p-queue": "^6.2.1",
     "parcel": "2.0.0-dev.1599",

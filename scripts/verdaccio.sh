@@ -43,7 +43,7 @@ set -e
 make build
 
 # Start verdaccio and send it to the background
-yarn verdaccio --config "./.verdaccio-ci.config.yml" --listen $port &>${output}&
+yarn verdaccio --listen $port &>${output}&
 
 # Wait for verdaccio to start
 grep -q 'http address' <(tail -f $output)
@@ -63,9 +63,6 @@ then
   git config --global user.name GitHub Actions
 fi
 
-# Bump all package versions (allow publish from current branch but don't push tags or commit)
-yarn workspaces foreach --all --no-private version minor --deferred
-yarn version apply --all
 # Bump all package versions (allow publish from current branch but don't push tags or commit)
 yarn workspaces foreach --all --no-private version patch --deferred
 yarn version apply --all
